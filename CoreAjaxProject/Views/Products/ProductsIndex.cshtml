@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Ürün Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<button class="btn btn-primary m-2" id="btnAddProduct">Ürün Ekle</button>
+<table class="table table-bordered">
+    <thead>
+        <tr class="text-center">
+            <th>
+                Ürün ID
+            </th>
+            <th>
+               Stok Kodu 
+            </th>
+            <th>
+               Barkod
+            </th>
+            <th>
+                Ürün Adı
+            </th>
+            <th>
+                Ürün Miktarı
+            </th>
+            <th>
+                Marka
+            </th>
+            <th>
+                Kategori
+            </th>
+            <th>
+               İşlemler
+            </th>
+        </tr>
+    </thead>
+    <tbody class="text-center" id="tableData">
+    </tbody>
+</table>
+<div class="modal fade" id="ProdutcsModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="text-info modal-title" id="ProductsHeading"><strong>Ürün Ekle</strong></h1>
+                <button class="close text-danger" onclick="HideModalPopUp()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="form-group" id="ProductId">
+                        <label>Ürün ID</label>
+                        <input type="text" class="form-control" id="PrdID" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label>Stok Kodu</label>
+                        <input type="text" placeholder="Ürün Stok Kodu Giriniz" class="form-control" id="PrdSC" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label>Barkod</label>
+                        <input type="text" placeholder="Barkod" class="form-control" id="PrdBarcode" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label>Ürün Adı</label>
+                        <input type="text" placeholder="Ürün Adı Giriniz" class="form-control" id="PrdName" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label>Miktar</label>
+                        <input type="datetime" placeholder="Miktar Giriniz" class="form-control" id="PrdQuantity" autocomplete="on" />
+                    </div>
+                    <div class="form-group">
+                        <label>Marka</label>
+                        <input type="text" placeholder="Marka Giriniz" class="form-control" id="PrdBrnd" autocomplete="on" />
+                    </div>
+                    <div class="form-group">
+                        <label>Kategori</label>
+
+                        <select class="form-control" id="PrdCat">
+                            @if (ViewData["CategoryList"] != null)
+                            {
+                                foreach (var category in ViewData["CategoryList"] as List<SelectListItem>)
+                                {
+                                    <option value="@category.Value">@category.Text</option>
+                                    
+                                }
+                            }
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button onclick="AddPrd()" class="btn btn-primary" id="addPrd">Kaydet</button>
+                <button onclick="UpdatePrd()" class="btn btn-warning" style="display:none" id="updatePrd">Güncelle</button>
+                <button onclick="HideModalPopUp()" class="btn btn-danger">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <input type="hidden" id="urlProductsData" value="@Url.Action("ProductsList","Products")" />
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/ProductsCrud.js"></script>
+
+

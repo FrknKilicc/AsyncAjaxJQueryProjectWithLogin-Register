@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Kategori Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<button class="btn btn-primary m-2" id="btnAddCategory">Kategori Ekle</button>
+<table class="table table-bordered">
+    <thead>
+        <tr class="text-center">
+            <th>
+                Kategori ID
+            </th>
+            <th>
+                Kategori Adı
+            </th>
+            <th>
+                Kategori Açıklaması
+            </th>
+            <th>
+                İşlemler
+            </th>
+        </tr>
+    </thead>
+    <tbody class="text-center" id="tableData">
+    </tbody>
+</table>
+<div class="modal fade" id="CategoryModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="text-info modal-title" id="CategoryHeading"><strong>Kategori Ekle</strong></h1>
+                <button class="close text-danger" onclick="HideModalPopUp()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="form-group" id="CatID">
+                        <label>Kategori ID</label>
+                        <input type="text" class="form-control" id="CategoryyID" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label>Kategori Adı</label>
+                        <input type="text" placeholder="Kategori Adı Giriniz" class="form-control" id="CatName" autocomplete="on" />
+                    </div>
+                    <div class="form-group">
+                        <label>Kategori Açıklaması</label>
+                        <input type="text" placeholder="Kategori Açıklaması Giriniz" class="form-control" id="CatDesc" autocomplete="off" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button onclick="AddCategory()" class="btn btn-primary" id="addCategory">Kaydet</button>
+                <button onclick="UpdateCat()" class="btn btn-warning" style="display:none" id="updateCategory">Güncelle</button>
+                <button onclick="HideModalPopUp()" class="btn btn-danger">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <input type="hidden" id="urlCategoryData" value="@Url.Action("CategoryList","Categories")" />
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/CategoryCrudJS.js"></script>
+
+

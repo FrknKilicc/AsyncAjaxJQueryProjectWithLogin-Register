@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Kategori Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<button class="btn btn-primary m-2" id="btnAddEmployee">Personel Ekle</button>
+<table class="table table-bordered">
+    <thead>
+        <tr class="text-center">
+            <th>
+                Personel ID
+            </th>
+            <th>
+                Personel Adı
+            </th>
+            <th>
+                Personel Görevi
+            </th>
+            <th>
+                Personel Telefon No
+            </th>
+            <th>
+                İşe Giriş Tarihi
+            </th>
+            <th>
+                Çalıştığı Firma
+            </th>
+            <th>
+                Maaş
+            </th>
+            <th>
+                İşlemler
+            </th>
+        </tr>
+    </thead>
+    <tbody class="text-center" id="tableData">
+    </tbody>
+</table>
+<div class="modal fade" id="EmployeeModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="text-info modal-title" id="EmployeeHeading"><strong>Perosnel Ekle</strong></h1>
+                <button class="close text-danger" onclick="HideModalPopUp()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="form-group" id="EmployeId">
+                        <label>Personel ID</label>
+                        <input type="text" class="form-control" id="EmpID" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label>Personel Adı</label>
+                        <input type="text" placeholder="Personel Adı Giriniz" class="form-control" id="EmpName" autocomplete="on" />
+                    </div>
+                    <div class="form-group">
+                        <label>Personel Görevi</label>
+                        <input type="text" placeholder="Görevini Giriniz" class="form-control" id="EmpTitle" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label>Personel İletişim No</label>
+                        <input type="text" placeholder="İletişim No Giriniz" class="form-control" id="EmpPhnNo" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label>İşe Giriş Tarihi</label>
+                        <input type="datetime" placeholder="İşe Giriş Tarihini Giriniz" class="form-control" id="EmpSD" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label>Personel Firması</label>
+                       
+                        <select class="form-control" id="EmpComp">
+                            @if (ViewData["CompanyList"] != null)
+                            {
+                                foreach (var company in ViewData["CompanyList"] as List<SelectListItem>)
+                                {
+                                    <option value="@company.Value">@company.Text</option>
+                                    string degisken = company.Text;
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Maaş Bilgisi</label>
+                        <input type="text" placeholder="Maaş Bilgisi Giriniz" class="form-control" id="EmpSalry" autocomplete="off" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button onclick="AddEmp()" class="btn btn-primary" id="addEmp">Kaydet</button>
+                <button onclick="UpdateEmp()" class="btn btn-warning" style="display:none" id="updateEmp">Güncelle</button>
+                <button onclick="HideModalPopUp()" class="btn btn-danger">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <input type="hidden" id="urlEmployeeData" value="@Url.Action("EmployeeList","Employee")" />
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/EmployeeCrud.js"></script>
+
+
