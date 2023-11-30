@@ -1,5 +1,5 @@
 Backend (Server-Side):
-.NET 6.0: You targeted .NET 6.0 when creating the project.
+.NET 6.0:.NET 6.0 when creating the project.
 ASP.NET Core: Your web application is built on ASP.NET Core.
 Entity Framework Core: Entity Framework Core is used for database interactions.
 C#: C# is used for controllers and other backend processes.
