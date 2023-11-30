@@ -1,6 +1,6 @@
 Backend (Server-Side):
 .NET 6.0:.NET 6.0 when creating the project.
-ASP.NET Core: Your web application is built on ASP.NET Core.
+ASP.NET Core: Web application is built on ASP.NET Core.
 Entity Framework Core: Entity Framework Core is used for database interactions.
 C#: C# is used for controllers and other backend processes.
 Razor View Engine: I used to combine HTML and C# code.
